@@ -9,6 +9,7 @@ app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 
 const key = '77f97b598769bf8861004c74e30ebbba';
+let city = 'Tartu'
 
 const getWeatherDataPromise = (url) => {
     return new Promise((resolve, reject) => {
@@ -34,7 +35,7 @@ const getWeatherDataPromise = (url) => {
         })
 }
 
-app.all('/', function (req, res) {
+  app.all('/', function (req, res) {
     let city
     if(req.method == 'GET'){
         city = 'Tartu'
@@ -48,7 +49,7 @@ app.all('/', function (req, res) {
             res.render('index', data)
         })
 
-.catch(error =>) {
+.catch(error => {
     res.sender('index', {error: 'Problem with getting data, try again!'})
     })
 })
